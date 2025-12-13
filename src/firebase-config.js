@@ -1,4 +1,4 @@
-export const environment = {
+const firebaseConfig = {
   apiKey: "AIzaSyCxh9G57OE80dulw2gsotJPZ5QrhHixtpE",
   authDomain: "friendlychat-d1380.firebaseapp.com",
   projectId: "friendlychat-d1380",
