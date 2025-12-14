@@ -1,6 +1,3 @@
 .dropdown:hover .dropdown-menu {
     display: block;
 }
-.flex-grow {
-  pointer-events: none;
-}
