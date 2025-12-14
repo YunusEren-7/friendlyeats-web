@@ -9,6 +9,7 @@ import {
   getAuth,
   User,
 } from '@angular/fire/auth';
+
 import { map, switchMap, firstValueFrom, filter, Observable, Subscription } from 'rxjs';
 import {
   doc,
@@ -75,20 +76,24 @@ export class ChatService {
 
   // Login Friendly Chat.
   login() {
+    console.log("LOGIN CLICKED");
     signInWithPopup(this.auth, this.provider).then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        this.router.navigate(['/', 'chat']);
-        return credential;
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      this.router.navigate(['/', 'chat']);
+      return credential;
+    }).catch((err) => {
+      console.error("LOGIN ERROR", err);
     })
   }
 
   // Logout of Friendly Chat.
   logout() {
+    console.log("LOGOUT CLICKED");
     signOut(this.auth).then(() => {
-        this.router.navigate(['/', 'login'])
-        console.log('signed out');
+      this.router.navigate(['/', 'login']);
+      console.log('signed out');
     }).catch((error) => {
-        console.log('sign out error: ' + error);
+      console.log('sign out error: ' + error);
     })
   }
 
