@@ -145,10 +145,14 @@ addMessage = async (
     return this.addMessage(messageText, null);
   };
 
-  // Loads chat messages history and listens for upcoming ones.
-  loadMessages = () => {
-    return null as unknown;
-  };
+  // Loads chat message history and listens for upcoming ones.
+loadMessages = () => {
+  // Create the query to load the last 12 messages and listen for new ones.
+  const recentMessagesQuery = query(collection(this.firestore, 'messages'), orderBy('timestamp', 'desc'), limit(12));
+  // Start listening to the query.
+  return collectionData(recentMessagesQuery);
+}
+
 
   // Saves a new message containing an image in Firestore.
 // This first saves the image in Firebase storage.
@@ -175,8 +179,6 @@ saveImageMessage = async(file: any) => {
     console.error('There was an error uploading a file to Cloud Storage:', error);
   }
 }
-
-
 
   async updateData(path: string, data: any) {}
 
